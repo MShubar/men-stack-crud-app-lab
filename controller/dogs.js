@@ -10,6 +10,7 @@ const showNewDogForm = (req, res) => {
 }
 
 const createDog = async (req, res) => {
+  req.body.isAdopted = req.body.isAdopted === 'on'
   await Dog.create(req.body)
   res.redirect('/dogs')
 }
@@ -25,6 +26,7 @@ const showEditDogForm = async (req, res) => {
 }
 
 const updateDog = async (req, res) => {
+  req.body.isAdopted = req.body.isAdopted === 'on'
   await Dog.findByIdAndUpdate(req.params.id, req.body)
   res.redirect(`/dogs/${req.params.id}`)
 }
